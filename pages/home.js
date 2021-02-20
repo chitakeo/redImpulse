@@ -1,11 +1,18 @@
 // これがリンクAPIです
 import Link from 'next/link'
+import { signIn, signOut, useSession } from 'next-auth/client'
 
-export default () => (
-    <div>
-      <p>This is the home page</p>
-      <Link href="/admin">
-        <a>管理者ページへ</a>
-      </Link>
-    </div>
-  )
+export default function Home () {
+  const [ session, loading ] = useSession()
+    
+  return <>
+    {!session && <>
+      Not signed in <br/>
+      <button onClick={signIn}>Sign in</button>
+    </>}
+    {session && <>
+      Signed in as {session.user.email} <br/>
+      <button onClick={signOut}>Sign out</button>
+    </>}
+  </>
+}

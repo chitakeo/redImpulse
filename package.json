@@ -11,6 +11,7 @@
     "lint:fix": "eslint --fix --ext .ts,.tsx --ignore-path .gitignore ."
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "next": "^10.0.1",
     "next-auth": "^3.4.2",
     "react": "^16.13.1",

@@ -3,8 +3,8 @@ import Providers from 'next-auth/providers'
 
 const findUserByCredentials = credentials => {
     if (
-      credentials.id === process.env.USER_ID &&
-      credentials.password === process.env.USER_PASSWORD
+      credentials.id === process.env.USER_ID && 
+      credentials.password === process.env.USER_PASSWORD 
     ) {
       return { id: 1, name: "Chitakeo" }
     } else {
@@ -25,9 +25,9 @@ const options = {
           if (user) {
             return Promise.resolve(user)
           } else {
-            // return Promise.resolve(null) // 認証拒否
-            return Promise.reject(new Error('ログインできませんでした')) // エラーページにリダイレクト
-            // return Promise.reject('/path/to/redirect')        // URL にリダイレクト
+            return Promise.resolve(null) // 認証拒否
+            // return Promise.reject(new Error('ログインできませんでした')) // エラーページにリダイレクト
+            //return Promise.reject('/path/to/redirect')        // URL にリダイレクト
           }
         },
       }),
