@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Router from 'next/router'
+import Router  from 'next/router'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import {
     Formik,
@@ -22,6 +22,7 @@ const validationSchema = Yup.object().shape({
         .required('本文を入力してください'),
 });
 
+
 class RegistrationForm extends Component {
     constructor(props) {
         super(props);
@@ -31,13 +32,11 @@ class RegistrationForm extends Component {
             text: ''
         }
     }
-
     /**
      * フォーム送信後の処理
      */
     handleSubmit (form) {
-        // 値をコンソール表示
-        console.log(form)
+       Router.push({pathname: '/submit', query: form})
     }
 
     render() {
