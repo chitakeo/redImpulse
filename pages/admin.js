@@ -11,18 +11,16 @@ export async function getStaticProps() {
     props : { posts }
   }
 }
+
+const Hello = ({name, email, body}) => (
+  <div>
+   <p> {name} {email} {body}</p>
+  </div>
+);
     
 export default ({posts}) => {
-    const [ session, loading ] = useSession()
-    console.log(posts.length);
-    var name = [];
-    var email = [];
-    var body = [];
-    for (let i = 0; i < posts.length; i++){
-      name.push(<h1>{posts[i].name}</h1>);
-      email.push(<h1>{posts[i].email}</h1>);
-      body.push(<h1>{posts[i].body}</h1>);
-    }
+    const [ session, loading ] = useSession();
+    
     function clickHandler() {
       if (signOut('credentials') != null)
       Router.push('/home')
@@ -33,11 +31,12 @@ export default ({posts}) => {
       
       <div style={{textAlign: "center"}}>
         <h1>管理者ページ</h1>
-        <h2>{posts[0].name}</h2>
-        
-       
+        {posts.map((item) => (
+          <Hello id={item.id} name={item.name} email={item.email} body={item.body} key={item.id}/>
+        ))}
+
         <button onClick={clickHandler}>サインアウト</button>
-        {name}
+        
       </div>
 
     );
